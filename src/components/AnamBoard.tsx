@@ -34,7 +34,7 @@ const AnamBoard: React.FC = () => {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              <small className="position-relative end-0">-{options[id].cost} Punkte</small>
+              <small className="position-relative end-0">{(options[id].cost > 0) ? "-" : "+"}{options[id].cost.toString().replace('-', '')} Punkte</small>
             </div>
           </Fade>
         )})}
