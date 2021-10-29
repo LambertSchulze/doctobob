@@ -21,6 +21,7 @@ const TopicList: React.FC = () => {
       {Object.values(options).filter((option: Option) => !option.hidden).map((option: Option) => {
         return (
           <ListGroup.Item
+            key={option.id}
             action
             disabled={history.includes(option.id)}
             onClick={() => selectOption(option.id)}
