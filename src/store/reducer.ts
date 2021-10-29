@@ -23,27 +23,91 @@ const initialState: Game = {
     },
     "3": {
       "id": 3,
-      "title": "Neurologische klinische Untersuchung",
-      "description": "Der Patient ist orientiert, MME 26 Punkte. Kein Hinweis auf Verlangsamung, kein Hinweis auf zentrale fokale Prozesse. Alle Reflexe seitengleich mittellebhaft.",
-      "cost": 80,
-      "unlock": [4, 5],
+      "title": "Sexualanamnese",
+      "description": "Unauffällig",
+      "cost": 50,
+      "unlock": null,
       "hidden": false
     },
     "4": {
       "id": 4,
-      "title": "Kleines Blutbild",
-      "description": "Hb 8,6 g/dL (12.5 – 16.5 g/dL) Thrombozyten 24_000/μl (150 000 – 400 000) Leukozyten 1 279 000/μl (4 500 – 11 000)",
-      "cost": 20,
-      "unlock": null,
-      "hidden": true
+      "title": "Neurologische klinische Untersuchung",
+      "description": "Der Patient ist orientiert, MME 26 Punkte. Kein Hinweis auf Verlangsamung, kein Hinweis auf zentrale fokale Prozesse. Alle Reflexe seitengleich mittellebhaft.",
+      "cost": 80,
+      "unlock": [6, 7],
+      "hidden": false
     },
     "5": {
       "id": 5,
+      "title": "Psychosomatische klinische Untersuchung",
+      "description": "Kein Hinweis auf Depression.",
+      "cost": 80,
+      "unlock": null,
+      "hidden": false
+    },
+    "6": {
+      "id": 6,
+      "title": "Kleines Blutbild",
+      "description": "Hb 8,6 g/dL (12.5 – 16.5 g/dL) Thrombozyten 24_000/μl (150 000 – 400 000) Leukozyten 1 279 000/μl (4 500 – 11 000)",
+      "cost": 20,
+      "unlock": [12],
+      "hidden": true
+    },
+    "7": {
+      "id": 7,
       "title": "Großes Blutbild",
       "description": `- Leukozyten 1 279 000/μl (4 500 – 11 000) - Neutrophile Granulozyten: nicht bestimmbar - Stabkernige: nicht bestimmbar - Lymphozyten: 1 250 000/μl - Monozyten: 200/μL - Basophile Granulozyten: 0/μL - Eosinophile Granoluzyten: 0μL`,
       "cost": 20,
-      "unlock": null,
+      "unlock": [13],
       "hidden": true
+    },
+    "8": {
+      "id": 8,
+      "title": "Elektrolyte",
+      "description": "Na 141 mmol/L K 4,1 mmol/L Mg 0,95 mmol/L Ca 2,51 mmol/L Chlorid 108 mmol/L",
+      "cost": 20,
+      "unlock": null,
+      "hidden": false
+    },
+    "9": {
+      "id": 9,
+      "title": "Blutzucker",
+      "description": "Nüchtern: 65 mg/dL",
+      "cost": 20,
+      "unlock": null,
+      "hidden": false
+    },
+    "10": {
+      "id": 10,
+      "title": "Blutausstrich",
+      "description": "Verminderte Erythrozyten, mit Kugelzellen und Stachelzellen. Keine Thrombozyten erkennbar. Sehr viele unreife Lymphozyten mit teils fleckigen, vergrößerten Kernen und Zytoplasma- Ausstülpungen. Keine Granulozyten erkennbar.",
+      "cost": 40,
+      "unlock": [13],
+      "hidden": false
+    },
+    "11": {
+      "id": 11,
+      "title": "Durchflusszytometrie",
+      "description": "99% CD3+, CD4+, CD8+-Lymphozyten, vereinbar mit einer T-Zell-promyelozytären Form.",
+      "cost": 150,
+      "unlock": [13],
+      "hidden": false
+    },
+    "12": {
+      "id": 12,
+      "title": "Karyogramm der Lymphomzellen",
+      "description": "Alle Zellen haben den Karyotyp 46 XY inv14(q11.2q32), mit einem Rearrangement des T-Zell-Rezeptors.",
+      "cost": 150,
+      "unlock": [13],
+      "hidden": true
+    },
+    "13": {
+      "id": 13,
+      "title": "Diagnose",
+      "description": "T-CLL, T-Zell-Lymphom, T-Zell-Leukämie, T-Zell-Prolymphozytäre Leukämie",
+      "cost": -500,
+      "unlock": null,
+      "hidden": true,
     }
   },
   "history": [],
