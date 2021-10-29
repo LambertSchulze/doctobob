@@ -18,7 +18,7 @@ const TopicList: React.FC = () => {
 
   return (
     <ListGroup>
-      {Object.values(options).map((option: Option) => {
+      {Object.values(options).filter((option: Option) => !option.hidden).map((option: Option) => {
         return (
           <ListGroup.Item
             action

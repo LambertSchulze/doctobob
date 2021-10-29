@@ -6,6 +6,7 @@ interface Option {
   description: string;
   cost: number;
   unlock: number[] | null;
+  hidden: boolean;
 };
 
 type Options = Option[];
@@ -27,6 +28,7 @@ interface Game {
   start: GameStart;
   options: IndexedOptions;
   history: PlayerHistory;
+  score: number;
 }
 
 interface ActionWithId {

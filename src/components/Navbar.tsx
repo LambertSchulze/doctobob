@@ -7,7 +7,13 @@ import {
 
 const MainNavbar: React.FC = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar
+      className="mb-4"
+      bg="dark"
+      variant="dark"
+      expand="lg"
+      sticky="top"
+    >
       <Container>
         <Navbar.Brand href="#home">DoctoBob</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
