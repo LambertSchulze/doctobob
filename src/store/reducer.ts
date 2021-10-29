@@ -111,14 +111,37 @@ const initialState: Game = {
     }
   },
   "history": [],
-  "score": 1000
+  "score": 0
 }
 
 const reducer = (state: Game = initialState, action: ActionWithId): Game => {
   switch (action.type) {
     case actionTypes.SELECT_ANAM:
+      let indexedUnlockedOptions = {};
+      const unlockedOptionIds = state.options[action.optionId].unlock;
+
+      if (unlockedOptionIds) {
+        const unlockedOptions: Options = unlockedOptionIds?.map(id => {
+          return {
+            ...state.options[id],
+            hidden: false
+          }
+        })
+
+        indexedUnlockedOptions = unlockedOptions?.reduce(
+          (pre, cur) => ({
+            ...pre,
+            [cur.id]: cur,
+          }), {}
+        )
+      }
+
       return {
         ...state,
+        options: {
+          ...state.options,
+          ...indexedUnlockedOptions
+        },
         history: [...state.history, action.optionId],
         score: state.score - state.options[action.optionId].cost
       }
