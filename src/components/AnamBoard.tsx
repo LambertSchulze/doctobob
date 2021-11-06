@@ -1,45 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { Card, Fade, Container } from 'react-bootstrap';
+import {
+  Container,
+  Button,
+  Card,
+  Fade,
+} from 'react-bootstrap';
 
 const AnamBoard: React.FC = () => {
-  const start = useSelector((state: Game) => state.start);
+  const [showHistory, setShowHistory] = useState(false);
   const playerHistory = useSelector((state: Game) => state.history);
   const options = useSelector((state: Game) => state.options);
 
+  const lastInHistory: number = playerHistory[playerHistory.length - 1];
+  const currentOption = options[lastInHistory];
+  // reverse() is destructive! changes original Array
+  const reversedHistory = playerHistory.reverse();
+
+  const showHistoryClicked = () => {
+    setShowHistory(previous => !previous);
+  };
+
   return (
     <Container style={{overflowY: 'auto', maxHeight: '80vh'}}>
-      <Fade className="mb-3" in appear>
-        <Card>
-          <Card.Body>
-            <Card.Text>
-              {start.description}
-            </Card.Text>
-          </Card.Body>
-        </Card>
-      </Fade>
+      <Button
+        variant="secondary"
+        disabled={playerHistory.length <= 1}
+        onClick={showHistoryClicked}
+      >Show previous Cards</Button>
 
-      {playerHistory.map(id => {
-        return (
-          <Fade key={id} className="mb-3" in appear>
-            <div>
-              <Card>
-                <Card.Body>
-                  <Card.Title>
-                    {options[id].title}
-                  </Card.Title>
-                  <Card.Text>
-                    {options[id].description}
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              <small className="position-relative end-0">{(options[id].cost > 0) ? "-" : "+"}{options[id].cost.toString().replace('-', '')} Punkte</small>
-            </div>
-          </Fade>
-        )})}
+      {showHistory ?
+        reversedHistory.map(id => {
+          return (
+            <Fade key={id} className="mb-3" in appear>
+              <div>
+                <Card>
+                  <Card.Body>
+                    <Card.Title>
+                      {options[id]?.title}
+                    </Card.Title>
+                    <Card.Text>
+                      {options[id].description}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </div>
+            </Fade>
+          )}) :
+        <Fade className="mb-3" in appear>
+          <div>
+            <Card>
+              <Card.Body>
+                <Card.Title>{currentOption?.title}</Card.Title>
+                <Card.Text>{currentOption.description}</Card.Text>
+              </Card.Body>
+            </Card>
+            {currentOption.cost &&
+              <small className="position-relative end-0">
+                {(currentOption.cost > 0) ? "-" : "+"}{currentOption?.cost.toString().replace('-', '')} Punkte
+              </small>
+            }
+          </div>
+        </Fade>
+      }
     </Container>
-  )
-}
+  );
+};
 
 export default AnamBoard;

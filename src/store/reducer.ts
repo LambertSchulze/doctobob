@@ -1,10 +1,11 @@
 import * as actionTypes from './actionTypes';
 
 const initialState: Game = {
-  "start" : {
-    "description": "Ein 64-jähriger Patient kommt wegen zunehmenden schnellen Ermüdbarkeit und Schwindelgefühlen. Auf Nachfrage ist er bisher noch nicht synkopiert. Bei der körperlichen Untersuchung ist der Patient blass, T 37,2°C, AF 22/min, HF 102/min, RR 103/72 mmHg, BMI 19,2 kg/m2, die Sättigung unter RL beträgt 94%. Die Auskultation ergibt keinen pathologischen Befund, bei der Palpation des Abdomens ist die Milz 2 QF unter dem linken Rippenbogen tastbar, die Leber ist 19 cm in der MCL rechts."
-  },
   "options": {
+    "0": {
+      "id": 0,
+      "description": "Ein 64-jähriger Patient kommt wegen zunehmenden schnellen Ermüdbarkeit und Schwindelgefühlen. Auf Nachfrage ist er bisher noch nicht synkopiert. Bei der körperlichen Untersuchung ist der Patient blass, T 37,2°C, AF 22/min, HF 102/min, RR 103/72 mmHg, BMI 19,2 kg/m2, die Sättigung unter RL beträgt 94%. Die Auskultation ergibt keinen pathologischen Befund, bei der Palpation des Abdomens ist die Milz 2 QF unter dem linken Rippenbogen tastbar, die Leber ist 19 cm in der MCL rechts.",
+    },
     "1": {
       "id": 1,
       "title": "Sozialanamnese",
@@ -110,7 +111,7 @@ const initialState: Game = {
       "hidden": true,
     }
   },
-  "history": [],
+  "history": [0],
   "score": 0
 }
 
@@ -143,7 +144,7 @@ const reducer = (state: Game = initialState, action: ActionWithId): Game => {
           ...indexedUnlockedOptions
         },
         history: [...state.history, action.optionId],
-        score: state.score - state.options[action.optionId].cost
+        score: state.score - (state.options[action.optionId].cost ?? 0)
       }
     default:
       return state

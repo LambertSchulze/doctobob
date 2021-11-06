@@ -9,14 +9,7 @@ import thunk from 'redux-thunk';
 import reducer from './store/reducer'
 
 import MainNavbar from './components/Navbar';
-import Score from './components/Score';
-import AnamBoard from './components/AnamBoard';
-import TopicList from './components/TopicList'
-import {
-  Container,
-  Row,
-  Col
-} from 'react-bootstrap';
+import Game from './views/Game';
 
 const store = createStore(reducer, applyMiddleware(thunk))
 
@@ -25,17 +18,8 @@ store.subscribe(() => console.log(store.getState()))
 function App() {
   return (
     <Provider store={store}>
-      <Container>
-        <MainNavbar />
-        <Row>
-          <Col><h1>Test Anam</h1></Col>
-          <Col className="text-end"><Score /></Col>
-        </Row>
-        <Row>
-          <Col><AnamBoard /></Col>
-          <Col><TopicList /></Col>
-        </Row>
-      </Container>
+      <MainNavbar />
+      <Game />
     </Provider>
   );
 }

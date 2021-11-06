@@ -1,12 +1,15 @@
 type Id = number;
 
-interface Option {
-  id: Id;
-  title: string;
+interface GameStart {
   description: string;
-  cost: number;
-  unlock: number[] | null;
-  hidden: boolean;
+}
+
+interface Option extends GameStart {
+  id: Id;
+  title?: string;
+  cost?: number;
+  unlock?: number[] | null;
+  hidden?: boolean;
 };
 
 type Options = Option[];
@@ -15,9 +18,6 @@ interface IndexedOptions {
   [optionId: Id]: Option
 }
 
-interface GameStart {
-  description: string;
-}
 
 /**
  * An Array of Option-Ids that the player picked
@@ -25,7 +25,6 @@ interface GameStart {
 type PlayerHistory = Id[];
 
 interface Game {
-  start: GameStart;
   options: IndexedOptions;
   history: PlayerHistory;
   score: number;
