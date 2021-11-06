@@ -5,6 +5,13 @@ export const selectAnam = (id: Id) => {
     type: actionTypes.SELECT_ANAM,
     optionId: id
   }
+  return action
+}
 
+export const changeScoreBy = (points: number) => {
+  const action = {
+    type: actionTypes.CHANGE_POINTS,
+    points
+  }
   return action
 }

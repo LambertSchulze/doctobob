@@ -29,8 +29,3 @@ interface Game {
   history: PlayerHistory;
   score: number;
 }
-
-interface ActionWithId {
-  type: string;
-  optionId: Id;
-}

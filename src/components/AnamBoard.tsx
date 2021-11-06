@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { changeScoreBy } from '../store/actionCreators';
 
 import {
   Container,
@@ -12,6 +14,7 @@ const AnamBoard: React.FC = () => {
   const [showHistory, setShowHistory] = useState(false);
   const playerHistory = useSelector((state: Game) => state.history);
   const options = useSelector((state: Game) => state.options);
+  const dispatch = useDispatch();
 
   const lastInHistory: number = playerHistory[playerHistory.length - 1];
   const currentOption = options[lastInHistory];
@@ -19,6 +22,12 @@ const AnamBoard: React.FC = () => {
   const reversedHistory = playerHistory.reverse();
 
   const showHistoryClicked = () => {
+    // on open
+    if (!showHistory) {
+      // it costs 11 Points to show the history
+      dispatch(changeScoreBy(11));
+    }
+    
     setShowHistory(previous => !previous);
   };
 

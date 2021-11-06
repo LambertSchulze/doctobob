@@ -1,1 +1,2 @@
-export const SELECT_ANAM = "SELECT_ANAM";
+export const SELECT_ANAM = "SELECT_ANAM"
+export const CHANGE_POINTS = "CHANGE_POINTS"

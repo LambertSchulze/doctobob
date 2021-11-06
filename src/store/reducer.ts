@@ -1,3 +1,4 @@
+import { AnyAction } from 'redux';
 import * as actionTypes from './actionTypes';
 
 const initialState: Game = {
@@ -115,7 +116,7 @@ const initialState: Game = {
   "score": 0
 }
 
-const reducer = (state: Game = initialState, action: ActionWithId): Game => {
+const reducer = (state: Game = initialState, action: AnyAction): Game => {
   switch (action.type) {
     case actionTypes.SELECT_ANAM:
       let indexedUnlockedOptions = {};
@@ -145,6 +146,11 @@ const reducer = (state: Game = initialState, action: ActionWithId): Game => {
         },
         history: [...state.history, action.optionId],
         score: state.score - (state.options[action.optionId].cost ?? 0)
+      }
+    case actionTypes.CHANGE_POINTS:
+      return {
+        ...state,
+        score: state.score - action.points
       }
     default:
       return state
