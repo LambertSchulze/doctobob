@@ -37,7 +37,10 @@ const AnamBoard: React.FC = () => {
         variant="secondary"
         disabled={playerHistory.length <= 1}
         onClick={showHistoryClicked}
-      >Show previous Cards</Button>
+        className="mb-1"
+      >
+        Show previous Cards
+      </Button>
 
       {showHistory ?
         reversedHistory.map(id => {
