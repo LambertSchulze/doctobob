@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { changeScoreBy } from '../store/actionCreators';
@@ -12,22 +12,21 @@ import {
 
 const AnamBoard: React.FC = () => {
   const [showHistory, setShowHistory] = useState(false);
+  const [currentOption, setCurrentOption] = useState<Option>();
   const playerHistory = useSelector((state: Game) => state.history);
   const options = useSelector((state: Game) => state.options);
   const dispatch = useDispatch();
 
-  const lastInHistory: number = playerHistory[playerHistory.length - 1];
-  const currentOption = options[lastInHistory];
-  // reverse() is destructive! changes original Array
-  const reversedHistory = playerHistory.reverse();
+  useEffect(() => {
+    const lastInHistory = playerHistory[playerHistory.length - 1];
+    setCurrentOption(options[lastInHistory]);
+  }, [playerHistory, options]);
 
   const showHistoryClicked = () => {
-    // on open
-    if (!showHistory) {
+    if (!showHistory) { // on open
       // it costs 11 Points to show the history
       dispatch(changeScoreBy(11));
     }
-    
     setShowHistory(previous => !previous);
   };
 
@@ -37,13 +36,13 @@ const AnamBoard: React.FC = () => {
         variant="secondary"
         disabled={playerHistory.length <= 1}
         onClick={showHistoryClicked}
-        className="mb-1"
+        className="mb-2"
       >
         Show previous Cards
       </Button>
 
       {showHistory ?
-        reversedHistory.map(id => {
+        playerHistory.reverse().map(id => {
           return (
             <Fade key={id} className="mb-3" in appear>
               <div>
@@ -65,12 +64,12 @@ const AnamBoard: React.FC = () => {
             <Card>
               <Card.Body>
                 <Card.Title>{currentOption?.title}</Card.Title>
-                <Card.Text>{currentOption.description}</Card.Text>
+                <Card.Text>{currentOption?.description}</Card.Text>
               </Card.Body>
             </Card>
-            {currentOption.cost &&
+            {currentOption?.cost &&
               <small className="position-relative end-0">
-                {(currentOption.cost > 0) ? "-" : "+"}{currentOption?.cost.toString().replace('-', '')} Punkte
+                {(currentOption?.cost > 0) ? "-" : "+"}{currentOption?.cost.toString().replace('-', '')} Punkte
               </small>
             }
           </div>
