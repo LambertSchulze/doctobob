@@ -2,12 +2,13 @@ import React from 'react'
 import {
   Container,
   Row,
-  Col
+  Col,
 } from 'react-bootstrap'
 import {
   Score,
   AnamBoard,
   TopicList,
+  Solve,
 } from '../components'
 
 
@@ -20,7 +21,7 @@ const Game: React.FC = () => {
       </Row>
       <Row>
         <Col><AnamBoard /></Col>
-        <Col><TopicList /></Col>
+        <Col><TopicList /><Solve /></Col>
       </Row>
     </Container>
   )
